@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  special_id_code: one
+  battery: 1
+
+two:
+  special_id_code: two
+  battery: 1

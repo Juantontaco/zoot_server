@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  scooter_id:
+  user_id:
+  end_time: nil
+
+two:
+  scooter_id:
+  user_id:
+  end_time: nil
