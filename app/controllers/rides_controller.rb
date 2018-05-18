@@ -35,7 +35,7 @@ class RidesController < ApplicationController
       format.json  { render :json => {
         ride: @ride,
         calculated_cost: @calculated_cost
-      }
+      }}
     end
   end
 end
