@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
-  get 'rides/create'
+  post 'rides/create'
 
-  get 'rides/stop'
+  post 'rides/stop'
 
-  get 'scooters/index'
+  get 'scooters' => 'scooters#index'
 
-  get 'scooters/show'
+  get 'scooters/:special_id_code' => 'scooters#show'
+
+
+  get '/users/check_if_in_ride' => 'users#check_if_in_ride'
 
   mount_devise_token_auth_for 'User', at: 'auth'
   # The priority is based upon order of creation: first created -> highest priority.

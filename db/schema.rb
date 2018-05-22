@@ -11,14 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180518154427) do
+ActiveRecord::Schema.define(version: 20180518184651) do
 
   create_table "rides", force: :cascade do |t|
     t.integer  "scooter_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.datetime "end_time"
+    t.float    "start_latitude"
+    t.float    "start_longitude"
+    t.float    "end_latitude"
+    t.float    "end_longitude"
   end
 
   add_index "rides", ["scooter_id"], name: "index_rides_on_scooter_id"
@@ -29,6 +33,8 @@ ActiveRecord::Schema.define(version: 20180518154427) do
     t.integer  "battery"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "users", force: :cascade do |t|

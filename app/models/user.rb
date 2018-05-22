@@ -3,6 +3,18 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-         
+
   include DeviseTokenAuth::Concerns::User
+
+  has_many :rides
+
+  def in_ride?
+    riding = false
+
+    self.rides.each do |ride|
+      riding = riding || ride.active?
+    end
+
+    riding
+  end
 end
