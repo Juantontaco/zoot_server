@@ -6,7 +6,7 @@ class ScootersController < ApplicationController
 
     respond_to do |format|
       format.html  # index.html.erb
-      format.json  { render :json => @scooters }
+      format.json  { render :json => { scooters: @scooters } }
     end
   end
 
@@ -15,7 +15,7 @@ class ScootersController < ApplicationController
 
     respond_to do |format|
       format.html  # index.html.erb
-      format.json  { render :json => @scooter }
+      format.json  { render :json => { scooter: @scooter } }
     end
   end
 
