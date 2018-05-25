@@ -11,7 +11,7 @@ class ScootersController < ApplicationController
   end
 
   def show
-    @scooter = Scooter.find_by_id(params[:id])
+    @scooter = Scooter.find_by(special_id_code: params[:special_id_code])
 
     respond_to do |format|
       format.html  # index.html.erb
