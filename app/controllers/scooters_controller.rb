@@ -13,7 +13,9 @@ class ScootersController < ApplicationController
   def show
     @scooter = Scooter.find_by(special_id_code: params[:special_id_code])
 
-    if @scooter.nil? raise "Scooter doesn't exist."
+    if @scooter.nil?
+      raise "Scooter doesn't exist."
+    end
 
     respond_to do |format|
       format.html  # index.html.erb
