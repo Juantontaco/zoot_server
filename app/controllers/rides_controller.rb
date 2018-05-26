@@ -17,11 +17,42 @@ class RidesController < ApplicationController
     end
   end
 
+  def ping
+    @ride = Ride.find_by_id params[:id]
+
+    if @ride.scooter.active? && @ride.user == current_user
+      latitude = params[:latitude]
+      longitude = params[:longitude]
+
+      @ride.ride_ping_locations << RidePingLocation.create(latitude: latitude, longitude: longitude)
+
+      render :json => {success: true}
+    else
+      raise "Not Permitted"
+    end
+  end
+
+  def show
+    @ride = Ride.find_by_id params[:id]
+
+    if @ride.nil?
+      raise "Not Available"
+    end
+
+    if @ride.user != current_user
+      raise "Not Permitted"
+    end
+
+    render :json => {ride: @ride, ride_ping_locations: @ride.ride_ping_locations}
+  end
+
   def stop
     @ride = Ride.find_by_id params[:id]
 
     if @ride.scooter.active? && @ride.user == current_user
       @ride.set_end_time
+    else
+      raise "Not Permitted"
     end
 
     @calculated_cost = @ride.calculate_cost

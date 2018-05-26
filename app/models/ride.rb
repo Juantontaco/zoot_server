@@ -2,6 +2,8 @@ class Ride < ActiveRecord::Base
   belongs_to :scooter
   belongs_to :user
 
+  has_many :ride_ping_locations
+
   BASE_FEE = 1
   PER_MINUTE_FEE = 0.15
 
