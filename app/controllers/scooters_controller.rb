@@ -13,6 +13,8 @@ class ScootersController < ApplicationController
   def show
     @scooter = Scooter.find_by(special_id_code: params[:special_id_code])
 
+    if @scooter.nil? raise "Scooter doesn't exist."
+
     respond_to do |format|
       format.html  # index.html.erb
       format.json  { render :json => { scooter: @scooter } }
