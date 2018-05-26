@@ -11,18 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180518184651) do
+ActiveRecord::Schema.define(version: 20180526172730) do
+
+  create_table "ride_ping_locations", force: :cascade do |t|
+    t.integer  "ride_id"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "ride_ping_locations", ["ride_id"], name: "index_ride_ping_locations_on_ride_id"
 
   create_table "rides", force: :cascade do |t|
     t.integer  "scooter_id"
     t.integer  "user_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.datetime "end_time"
     t.float    "start_latitude"
     t.float    "start_longitude"
     t.float    "end_latitude"
     t.float    "end_longitude"
+    t.string   "payment_source",  default: ""
   end
 
   add_index "rides", ["scooter_id"], name: "index_rides_on_scooter_id"
@@ -61,6 +72,7 @@ ActiveRecord::Schema.define(version: 20180518184651) do
     t.text     "tokens"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "stripe_customer_id",     default: ""
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

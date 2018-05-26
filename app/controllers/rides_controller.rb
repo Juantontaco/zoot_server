@@ -6,7 +6,8 @@ class RidesController < ApplicationController
 
     @ride = create(
       scooter: scooter,
-      user: current_user
+      user: current_user,
+      payment_source: params[:payment_source_id]
     )
 
     ## TODO: get location from user and update ride start_lat and start_long
@@ -57,7 +58,7 @@ class RidesController < ApplicationController
 
     @calculated_cost = @ride.calculate_cost
 
-    ## TODO: get location from user and update ride end_lat and end_long
+    Charge.new.make_charge(@calculated_cost, @ride.payment_source)
 
     ## TODO: get location from scooter and update
 
