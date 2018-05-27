@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get 'scooters/:special_id_code' => 'scooters#show'
 
 
+  post '/charges/add_source/:source_token' => 'charges#add_source'
+  get  '/charges/sources' => 'charges#sources'
+
   get '/users/check_if_in_ride' => 'users#check_if_in_ride'
 
   mount_devise_token_auth_for 'User', at: 'auth'

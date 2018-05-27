@@ -17,4 +17,14 @@ class User < ActiveRecord::Base
 
     riding
   end
+
+  def current_ride
+    self.rides.each do |ride|
+      if ride.active?
+        return ride
+      end
+    end
+
+    nil
+  end
 end
