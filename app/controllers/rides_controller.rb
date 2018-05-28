@@ -50,6 +50,8 @@ class RidesController < ApplicationController
   def stop
     @ride = Ride.find_by_id params[:id]
 
+    puts @ride, @ride.user, @ride.active?, current_user
+
     if @ride.active? && @ride.user == current_user
       @ride.set_end_time
     else
