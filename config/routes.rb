@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  post 'rides/create'
+  post '/rides/:special_id_code/:payment_source_id' => 'rides#create'
   get  '/rides/:id' => 'rides#show'
   post '/rides/stop/:id' => 'rides#stop'
   post '/rides/ping/:id/:latitude/:longitude' => 'rides#ping'
