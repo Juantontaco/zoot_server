@@ -56,9 +56,7 @@ class RidesController < ApplicationController
       raise "Not Permitted"
     end
 
-    @calculated_cost = @ride.calculate_cost
-
-    # Charge.new.make_charge(@calculated_cost, @ride.payment_source)
+    @ride.apply_charge_to_card
 
     ## TODO: get location from scooter and update
 
@@ -66,7 +64,7 @@ class RidesController < ApplicationController
       format.html  # index.html.erb
       format.json  { render :json => {
         ride: @ride,
-        calculated_cost: @calculated_cost
+        calculated_cost: @ride.calculate_cost
       }}
     end
   end

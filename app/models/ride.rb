@@ -4,6 +4,8 @@ class Ride < ActiveRecord::Base
 
   has_many :ride_ping_locations
 
+  validates_presence_of :payment_source
+
   BASE_FEE = 1
   PER_MINUTE_FEE = 0.15
 
@@ -22,6 +24,14 @@ class Ride < ActiveRecord::Base
   def calculate_cost
     if !active?
       BASE_FEE + PER_MINUTE_FEE * ((end_time - created_at) / 60).to_i
+    end
+  end
+
+  def apply_charge_to_card
+    unless active?
+      Charge.new.make_charge((calculate_cost * 100).to_i, payment_source)
+    else
+      puts "still active"
     end
   end
 end
