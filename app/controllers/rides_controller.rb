@@ -4,7 +4,7 @@ class RidesController < ApplicationController
   def create
     scooter = Scooter.find_by_special_id_code params[:special_id_code]
 
-    @ride = create(
+    @ride = Ride.create(
       scooter: scooter,
       user: current_user,
       payment_source: params[:payment_source_id]
