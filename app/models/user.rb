@@ -9,13 +9,7 @@ class User < ActiveRecord::Base
   has_many :rides
 
   def in_ride?
-    riding = false
-
-    self.rides.each do |ride|
-      riding = riding || ride.active?
-    end
-
-    riding
+    current_ride.present?
   end
 
   def current_ride

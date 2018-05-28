@@ -50,7 +50,7 @@ class RidesController < ApplicationController
   def stop
     @ride = Ride.find_by_id params[:id]
 
-    if @ride.scooter.active? && @ride.user == current_user
+    if @ride.active? && @ride.user == current_user
       @ride.set_end_time
     else
       raise "Not Permitted"
