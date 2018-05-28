@@ -29,7 +29,7 @@ class Ride < ActiveRecord::Base
 
   def apply_charge_to_card
     unless active?
-      Charge.new.make_charge((calculate_cost * 100).to_i, payment_source)
+      Charge.new.make_charge((calculate_cost * 100).to_i, payment_source, user.stripe_customer_id)
     else
       puts "still active"
     end

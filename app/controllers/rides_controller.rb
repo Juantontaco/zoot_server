@@ -56,6 +56,7 @@ class RidesController < ApplicationController
       raise "Not Permitted"
     end
 
+    @ride.reload
     @ride.apply_charge_to_card
 
     ## TODO: get location from scooter and update
