@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html  # index.html.erb
-      format.json  { render :json => {in_ride: @user.in_ride?, ride_id: @user.current_ride } }
+      format.json  { render :json => {in_ride: @user.in_ride?, ride_id: @user.current_ride.id } }
     end
   end
 
