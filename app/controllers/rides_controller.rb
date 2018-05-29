@@ -21,7 +21,7 @@ class RidesController < ApplicationController
   def ping
     @ride = Ride.find_by_id params[:id]
 
-    if @ride.scooter.active? && @ride.user == current_user
+    if @ride.active? && @ride.user == current_user
       latitude = params[:latitude]
       longitude = params[:longitude]
 
