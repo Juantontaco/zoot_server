@@ -2,6 +2,8 @@ class RidesController < ApplicationController
   before_action :authenticate_user!
 
   def create
+    current_user.close_all_rides if current_user.in_ride?
+
     scooter = Scooter.find_by_special_id_code params[:special_id_code]
 
     @ride = Ride.create(

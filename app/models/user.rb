@@ -21,4 +21,12 @@ class User < ActiveRecord::Base
 
     nil
   end
+
+  def close_all_rides
+    self.rides.each do |ride|
+      if ride.active?
+        ride.set_end_time
+      end
+    end
+  end
 end

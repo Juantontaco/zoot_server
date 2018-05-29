@@ -32,4 +32,22 @@ class UserTest < ActiveSupport::TestCase
 
     assert_equal true, user.in_ride?
   end
+
+  test 'close_all_rides' do
+    user = users(:one)
+
+    3.times do
+      ride = Ride.new(payment_source: 'fdaf')
+      user.rides << ride
+    end
+
+    assert_equal true, user.in_ride?
+
+    user.reload
+    user.close_all_rides
+
+    user.reload
+
+    assert_equal false, user.in_ride?
+  end
 end
