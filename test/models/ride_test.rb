@@ -62,7 +62,7 @@ class RideTest < ActiveSupport::TestCase
 
     sleep 0.1
 
-    assert_equal 1.15, ride.calculate_cost
+    assert_equal 115, ride.calculate_cost
   end
 
   test "calculate_cost for 180 second ride to be 1.45" do
@@ -73,6 +73,6 @@ class RideTest < ActiveSupport::TestCase
 
     sleep 0.1
 
-    assert_equal 1.45, ride.calculate_cost
+    assert_equal 145, ride.calculate_cost
   end
 end

@@ -9,7 +9,7 @@ class ScooterTest < ActiveSupport::TestCase
         scooter.rides << ride
       end
 
-      scooter.rides << Ride.new
+      scooter.rides << Ride.new(payment_source: 'hello')
     end
 
 
@@ -24,7 +24,7 @@ class ScooterTest < ActiveSupport::TestCase
       scooter.rides << ride
     end
 
-    scooter.rides << Ride.new
+    scooter.rides << Ride.new(payment_source: 'hello')
 
 
     scooter_two = Scooter.available_scooters.first

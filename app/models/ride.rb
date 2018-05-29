@@ -6,8 +6,8 @@ class Ride < ActiveRecord::Base
 
   validates_presence_of :payment_source
 
-  BASE_FEE = 1
-  PER_MINUTE_FEE = 0.15
+  BASE_FEE_IN_CENTS = 100
+  PER_MINUTE_FEE_IN_CENTS = 15
 
   def active?
     if end_time.present?
@@ -23,13 +23,13 @@ class Ride < ActiveRecord::Base
 
   def calculate_cost
     if !active?
-      BASE_FEE + PER_MINUTE_FEE * ((end_time - created_at) / 60).to_i
+      BASE_FEE_IN_CENTS + PER_MINUTE_FEE_IN_CENTS * (((end_time - created_at) / 60).to_i)
     end
   end
 
   def apply_charge_to_card
     unless active?
-      Charge.new.make_charge((calculate_cost * 100).to_i, payment_source, user.stripe_customer_id)
+      Charge.new.make_charge(calculate_cost, payment_source, user.stripe_customer_id)
     else
       puts "still active"
     end
