@@ -7,7 +7,8 @@ class RidesController < ApplicationController
     @rides = users_rides.map do |ride|
       {
         ride: ride,
-        ride_ping_locations: ride.ride_ping_locations.sort
+        ride_ping_locations: ride.ride_ping_locations.sort,
+        calculated_cost: ride.calculate_cost
       }
     end
 
