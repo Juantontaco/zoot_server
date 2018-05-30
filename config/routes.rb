@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post '/rides/stop/:id' => 'rides#stop'
   post '/rides/ping/:id' => 'rides#ping'
   get  '/rides/show/:id' => 'rides#show'
+  post  '/rides/comment/:id' => 'rides#comment'
 
   get 'scooters' => 'scooters#index'
 

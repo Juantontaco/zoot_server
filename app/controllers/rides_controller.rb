@@ -46,7 +46,7 @@ class RidesController < ApplicationController
       raise "Not Permitted"
     end
 
-    render :json => {ride: @ride, ride_ping_locations: @ride.ride_ping_locations}
+    render :json => {ride: @ride, ride_ping_locations: @ride.ride_ping_locations.sort}
   end
 
   def stop
@@ -69,6 +69,23 @@ class RidesController < ApplicationController
         ride: @ride,
         calculated_cost: @ride.calculate_cost
       }}
+    end
+  end
+
+  def comment
+    @ride = Ride.find_by_id params[:id]
+
+    if @ride.user == current_user
+      star_count = params[:star_count]
+      comment    = params[:comment]
+
+      RideComment.create(
+        ride: @ride,
+        star_count: star_count,
+        comment: comment
+      )
+
+      render :json => {success: true}
     end
   end
 end
