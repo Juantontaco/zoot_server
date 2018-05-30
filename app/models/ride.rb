@@ -2,6 +2,8 @@ class Ride < ActiveRecord::Base
   belongs_to :scooter
   belongs_to :user
 
+  has_one :ride_comment
+
   has_many :ride_ping_locations
 
   validates_presence_of :payment_source

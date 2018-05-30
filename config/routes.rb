@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  post '/rides/create/:special_id_code/:payment_source_id' => 'rides#create'
 
+  get  '/rides' => 'rides#index'
+  post '/rides/create/:special_id_code/:payment_source_id' => 'rides#create'
   post '/rides/stop/:id' => 'rides#stop'
   post '/rides/ping/:id' => 'rides#ping'
   get  '/rides/show/:id' => 'rides#show'
-  post  '/rides/comment/:id' => 'rides#comment'
+  post '/rides/comment/:id' => 'rides#comment'
 
   get 'scooters' => 'scooters#index'
 

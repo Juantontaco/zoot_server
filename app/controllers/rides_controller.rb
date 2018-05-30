@@ -1,6 +1,22 @@
 class RidesController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    users_rides = current_user.rides
+
+    @rides = users_rides.map do |ride|
+      {
+        ride: ride,
+        ride_ping_locations: ride.ride_ping_locations.sort
+      }
+    end
+
+    respond_to do |format|
+      format.html  # index.html.erb
+      format.json  { render :json => { rides: @rides } }
+    end
+  end
+
   def create
     current_user.close_all_rides if current_user.in_ride?
 
