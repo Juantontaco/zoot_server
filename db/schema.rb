@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20180604042301) do
     t.datetime "updated_at",                null: false
   end
 
-  add_index "promo_redemptions", [nil, nil], name: "index_promo_redemptions_on_invited_user_and_invite_sender_user", unique: true
+  add_index "promo_redemptions", ["invited_user_id", "invite_sender_user_id"], name: "uniq_promo_index", unique: true
 
   create_table "ride_comments", force: :cascade do |t|
     t.integer  "ride_id"
