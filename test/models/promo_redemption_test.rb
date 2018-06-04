@@ -121,4 +121,19 @@ class PromoRedemptionTest < ActiveSupport::TestCase
     assert_equal true, PromoRedemption.user_has_redemption?(user)
     assert_equal true, PromoRedemption.user_has_redemption?(user2)
   end
+
+  test "user_already_has_redeemed_an_invite?" do
+    user = users(:one)
+    user2 = User.create
+
+    promo = PromoRedemption.create(invited_user: user, invite_sender_user: user2)
+
+    # user.rides << Ride.create(payment_source: 'nfkdsa')
+
+    assert_equal false, PromoRedemption.user_already_has_redeemed_an_invite?(user)
+
+    promo.redeem_for_user(user)
+
+    assert_equal true, PromoRedemption.user_already_has_redeemed_an_invite?(user)
+  end
 end

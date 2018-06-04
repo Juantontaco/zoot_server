@@ -20,9 +20,15 @@ class PromoRedemption < ActiveRecord::Base
     find_redeemables_for_user(user).count > 0
   end
 
+  def self.user_already_has_redeemed_an_invite?(user)
+    where(invited_user: user).select do |promo_redemption|
+      promo_redemption.invited_redeem_time.present?
+    end.count > 0
+  end
+
   def can_redeem_for_user?(user)
     if invited_user == user
-      invited_redeem_time.nil?
+      invited_redeem_time.nil? && !PromoRedemption.user_already_has_redeemed_an_invite?(user)
     elsif invite_sender_user == user
       invite_sender_redeem_time.nil? && invited_user.rides.count > 0
     end
