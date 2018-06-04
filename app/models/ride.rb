@@ -31,6 +31,11 @@ class Ride < ActiveRecord::Base
 
   def apply_charge_to_card
     unless active?
+      if payment_source == "freeride" && user.has_promo_redemption?
+        user.first_redemption.redeem_for_user(user)
+        return
+      end
+
       Charge.new.make_charge(calculate_cost, payment_source, user.stripe_customer_id)
     else
       puts "still active"

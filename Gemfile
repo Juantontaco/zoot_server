@@ -34,6 +34,9 @@ gem 'devise'
 gem 'devise_token_auth'
 gem 'rack-cors', :require => 'rack/cors'
 
+
+gem 'airbrake', '~> 7.3'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
