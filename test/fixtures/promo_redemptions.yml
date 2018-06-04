@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  invited_user_id: 
-  invite_sender_user_id: 
-  invited_redeem_time: 2018-06-03 19:00:02
-  invite_sender_redeem_time: 2018-06-03 19:00:02
-
-two:
-  invited_user_id: 
-  invite_sender_user_id: 
-  invited_redeem_time: 2018-06-03 19:00:02
-  invite_sender_redeem_time: 2018-06-03 19:00:02
+# 
+# one:
+#   invited_user_id:
+#   invite_sender_user_id:
+#   invited_redeem_time: 2018-06-03 19:00:02
+#   invite_sender_redeem_time: 2018-06-03 19:00:02
+#
+# two:
+#   invited_user_id:
+#   invite_sender_user_id:
+#   invited_redeem_time: 2018-06-03 19:00:02
+#   invite_sender_redeem_time: 2018-06-03 19:00:02
