@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180530165703) do
+ActiveRecord::Schema.define(version: 20180604042301) do
+
+  create_table "promo_redemptions", force: :cascade do |t|
+    t.integer  "invited_user_id"
+    t.integer  "invite_sender_user_id"
+    t.datetime "invited_redeem_time"
+    t.datetime "invite_sender_redeem_time"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "promo_redemptions", [nil, nil], name: "index_promo_redemptions_on_invited_user_and_invite_sender_user", unique: true
 
   create_table "ride_comments", force: :cascade do |t|
     t.integer  "ride_id"

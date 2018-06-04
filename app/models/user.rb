@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
 
   has_many :rides
 
+
+  has_many :sent_promo_redemptions, :class_name => 'PromoRedemption', :foreign_key => 'invite_sender_user'
+  has_many :received_promo_redemptions, :class_name => 'PromoRedemption', :foreign_key => 'invited_user'
+
   def in_ride?
     current_ride.present?
   end
@@ -28,5 +32,13 @@ class User < ActiveRecord::Base
         ride.set_end_time
       end
     end
+  end
+
+  def has_promo_redemption?
+    PromoRedemption.user_has_redemption?(self)
+  end
+
+  def first_redemption
+    PromoRedemption.find_redeemables_for_user(user).first
   end
 end

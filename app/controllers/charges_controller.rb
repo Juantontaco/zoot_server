@@ -25,7 +25,7 @@ class ChargesController < ApplicationController
 
   def sources
     customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-    render json: {sources: customer.sources}
+    render json: {sources: customer.sources, has_promo_redemption: current_user.has_promo_redemption?}
   end
 
   # def make_charge
