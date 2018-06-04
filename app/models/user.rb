@@ -39,6 +39,6 @@ class User < ActiveRecord::Base
   end
 
   def first_redemption
-    PromoRedemption.find_redeemables_for_user(user).first
+    PromoRedemption.find_redeemables_for_user(self).first
   end
 end
