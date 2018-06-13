@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   get '/users/check_if_in_ride' => 'users#check_if_in_ride'
 
-  post '/promo/create/:email' => 'promo_redemptions#create'
+  post '/promo/create' => 'promo_redemptions#create'
 
   mount_devise_token_auth_for 'User', at: 'auth'
   # The priority is based upon order of creation: first created -> highest priority.
