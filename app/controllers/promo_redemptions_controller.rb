@@ -13,9 +13,6 @@ class PromoRedemptionsController < ApplicationController
       invite_sender_user: invite_sender_user
     )
 
-    respond_to do
-      format.html  # index.html.erb
-      format.json  { render :json => { success: true } }
-    end
+    render :json => { success: true }
   end
 end
